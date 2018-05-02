@@ -1,0 +1,102 @@
+<!doctype html>               <!--申明html文档-->
+<html>
+ <head>
+  <meta charset="utf-8">      <!--字符编码为国际编码-->
+  <meta name="Author" content="JS40期风屿——不懂就问">    <!--网页创建者-->
+  <meta name="Keywords" content="作业，练习题">         <!--供搜索引擎搜索匹配的关键-->
+  <meta name="description" content="课后练习题作业，熟悉课堂学习操作">  <!--在搜索有结果页面显示的网页描述-->
+  <title>第2次课后作业</title>   <!--网页标题-->  
+  <style>
+        body, p, ul, dl, dd, ol, h1, h2, h3, h4, h5, h6{ margin:0;}
+        ul,ol{ padding-left:0;list-style:none;}
+        table{ border-collapse:collapse; }
+        th, td{ padding: 0; }
+        em,i{ font-style:normal;/*设置字体样式：正常显示（就是不倾斜）*/}
+        strong,b{ font-weight:normal;/*设置字体加粗：正常显示（就是不加粗）*/}
+        a{ text-decoration:none;/*去掉下划线*/}
+        ul{
+            width:500px;
+            margin:80px auto;
+        }
+        li{
+            height:50px;
+            border-bottom: 1px solid aquamarine;
+            text-align: left;
+            line-height: 50px;
+        }
+
+        button{
+          width: 20px;
+          height:20px;
+          background: url("img/ck.png") no-repeat center;
+        }
+        .checked{
+          background: url("img/cked.jpg") no-repeat center;
+        }
+
+  </style>
+     <!--
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+      -->
+</head>
+<body>
+    <ul>
+        <li>
+            <button></button>全选
+            <button></button>反选
+        </li>
+        <li>
+            <button></button>
+            <span>;akd;fka;kdf</span>
+        </li>
+        <li>
+            <button></button>
+            <span>;akd;fka;kdf</span>
+        </li>
+        <li>
+            <button></button>
+            <span>;akd;fka;kdf</span>
+        </li>
+        <li>
+            <button></button>
+            <span>;akd;fka;kdf</span>
+        </li>
+
+    </ul>
+
+
+    <script>
+        var butBg = document.getElementsByTagName("button");
+            butLen = butBg.length
+            butBg[0].onclick = function () {
+                if(!butBg[0].className) {
+
+                    for (var i = 0; i < butLen; i++) {
+                        butBg[i].className = "checked"
+                    }
+                }else{
+                    for (var i = 0; i < butLen; i++) {
+                        butBg[i].className = ""
+                    }
+                }
+             for(var i=1;i<butLen;i++){
+                        butBg[i].index = i;
+                        butBg[i].onclick = function () {
+                        var  j = this.index.valueOf();
+                        console.log(j);
+                        if(!butBg[j].className){
+                            butBg[j].className = "checked"
+                        }else{
+                                butBg[j].className = ""
+                            }
+                        if(butBg[0].className) {
+                            butBg[0].className = ""
+                        }
+                    }
+
+             }
+         }
+
+    </script>
+</body>
+</html>
