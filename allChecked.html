@@ -5,7 +5,7 @@
   <meta name="Author" content="JS40期风屿——不懂就问">    <!--网页创建者-->
   <meta name="Keywords" content="作业，练习题">         <!--供搜索引擎搜索匹配的关键-->
   <meta name="description" content="课后练习题作业，熟悉课堂学习操作">  <!--在搜索有结果页面显示的网页描述-->
-  <title>第2次课后作业</title>   <!--网页标题-->  
+  <title>第9次作业-全选和反选</title>   <!--网页标题-->
   <style>
         body, p, ul, dl, dd, ol, h1, h2, h3, h4, h5, h6{ margin:0;}
         ul,ol{ padding-left:0;list-style:none;}
@@ -66,37 +66,58 @@
 
 
     <script>
-        var butBg = document.getElementsByTagName("button");
-            butLen = butBg.length
+        var butBg = document.getElementsByTagName("button"),
+            butLen = butBg.length;
+        // 全选点击事件，再次点击取消选择
             butBg[0].onclick = function () {
-                if(!butBg[0].className) {
+                // 判断当前全选的按钮的状态，若选中则取消选中，若没选则选中
+                if(!butBg[0].className) { // 判断类属性是否存在，实现选中效果
 
                     for (var i = 0; i < butLen; i++) {
-                        butBg[i].className = "checked"
+                        if (i != 1) { // 排除反选按钮
+                            butBg[i].className = "checked" ;
+                        }else
+                        butBg[i].className = "";
                     }
                 }else{
                     for (var i = 0; i < butLen; i++) {
                         butBg[i].className = ""
                     }
                 }
-             for(var i=1;i<butLen;i++){
-                        butBg[i].index = i;
-                        butBg[i].onclick = function () {
-                        var  j = this.index.valueOf();
-                        console.log(j);
-                        if(!butBg[j].className){
-                            butBg[j].className = "checked"
-                        }else{
-                                butBg[j].className = ""
+            };
+        // 实现反选，点击将未选中的选中，将选中的取消。
+            butBg[1].onclick = function () {
+                    // 点击后，将各按钮的状态取反；
+                    for (var i=0; i<butLen; i++) {
+                        // butBg[i].className = "checked";
+                        // console.log(butBg[1].className.valueOf());
+                        if (!butBg[i].className) { // 若没选，则选中；排除全选按钮0；
+                            // 判断若全选按钮处于选中状态，点击反选，将全选取消；
+                            if (i != 0) {
+                                butBg[i].className = "checked";
                             }
-                        if(butBg[0].className) {
-                            butBg[0].className = ""
+                        }else {
+                            butBg[i].className = "";
+                        };
+                        //console.log(i);
+                    };
+                };
+        // 实现单独选择每行，若为全选择状态，则取消全选按钮的选择状态。
+            for(var i=2;i<butLen;i++){ // 从2开始，排除全选和反选按钮。
+                    butBg[i].index = i;
+                    butBg[i].onclick = function () {
+                    var  j = this.index.valueOf();
+                    //console.log(j);
+                    if(!butBg[j].className){
+                        butBg[j].className = "checked";
+                    }else{
+                            butBg[j].className = ""
                         }
-                    }
-
-             }
-         }
-
+                    if(butBg[0].className) { // 取消全选的状态；
+                        butBg[0].className = ""
+                    };
+                };
+            };
     </script>
 </body>
 </html>
